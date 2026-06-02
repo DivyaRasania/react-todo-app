@@ -1,0 +1,211 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  background: #0f0f13;
+  color: #e8e8f0;
+  font-family: "Inter", "Segoe UI", system-ui, sans-serif;
+  display: flex;
+  justify-content: center;
+  padding: 3rem 1rem;
+}
+
+#root {
+  width: 100%;
+  max-width: 540px;
+}
+
+/* ── Header ── */
+.header {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  text-align: center;
+  margin-bottom: 2rem;
+  background: linear-gradient(135deg, #a78bfa, #60a5fa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── New todo form ── */
+.new-item-form {
+  background: #1a1a24;
+  border: 1px solid #2a2a3a;
+  border-radius: 16px;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.new-item-form label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #7878a0;
+}
+
+.add-item-container {
+  display: flex;
+  gap: 0.625rem;
+}
+
+.add-item-container input[type="text"] {
+  flex: 1;
+  background: #0f0f13;
+  border: 1px solid #2a2a3a;
+  border-radius: 10px;
+  padding: 0.625rem 0.875rem;
+  font-size: 0.95rem;
+  color: #e8e8f0;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.add-item-container input[type="text"]::placeholder {
+  color: #3a3a55;
+}
+
+.add-item-container input[type="text"]:focus {
+  border-color: #a78bfa;
+  box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.15);
+}
+
+/* ── Buttons ── */
+.btn {
+  border: none;
+  border-radius: 10px;
+  padding: 0.625rem 1.1rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.15s, transform 0.1s;
+}
+
+.btn:active {
+  transform: scale(0.96);
+}
+
+.add-btn {
+  background: linear-gradient(135deg, #a78bfa, #60a5fa);
+  color: #0f0f13;
+  white-space: nowrap;
+}
+
+.add-btn:hover {
+  opacity: 0.88;
+}
+
+.delete-btn {
+  background: transparent;
+  border: 1px solid #3a2a2a;
+  color: #f87171;
+  padding: 0.35rem 0.75rem;
+  font-size: 0.78rem;
+  opacity: 0;
+  transition: opacity 0.15s, background 0.15s, transform 0.1s;
+}
+
+.delete-btn:hover {
+  background: rgba(248, 113, 113, 0.12);
+  border-color: #f87171;
+  opacity: 1 !important;
+}
+
+/* ── Todo list ── */
+.item-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.item-list li {
+  background: #1a1a24;
+  border: 1px solid #2a2a3a;
+  border-radius: 12px;
+  padding: 0.875rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.item-list li:hover {
+  border-color: #3a3a55;
+  background: #1e1e2e;
+}
+
+.item-list li:hover .delete-btn {
+  opacity: 0.5;
+}
+
+.item-list label {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+  flex: 1;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  color: #c8c8e0;
+}
+
+/* ── Checkbox ── */
+.item-list input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 1.125rem;
+  height: 1.125rem;
+  border: 2px solid #3a3a55;
+  border-radius: 5px;
+  background: transparent;
+  cursor: pointer;
+  flex-shrink: 0;
+  position: relative;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.item-list input[type="checkbox"]:checked {
+  background: linear-gradient(135deg, #a78bfa, #60a5fa);
+  border-color: transparent;
+}
+
+.item-list input[type="checkbox"]:checked::after {
+  content: "";
+  position: absolute;
+  left: 3px;
+  top: 0px;
+  width: 5px;
+  height: 9px;
+  border: 2px solid #0f0f13;
+  border-top: none;
+  border-left: none;
+  transform: rotate(45deg);
+}
+
+/* ── Completed todo ── */
+.item-list input[type="checkbox"]:checked + span,
+.item-list label:has(input:checked) {
+  color: #4a4a65;
+  text-decoration: line-through;
+  text-decoration-color: #4a4a65;
+}
+
+/* ── Empty state ── */
+.item-list:empty::after,
+.item-list > span {
+  text-align: center;
+  color: #3a3a55;
+  font-size: 0.9rem;
+  padding: 2rem 0;
+  display: block;
+}
